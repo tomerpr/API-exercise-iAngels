@@ -1,0 +1,23 @@
+table, th {
+    border:1px solid black;
+}
+
+td {
+    text-align: center;
+    border:1px solid black;
+}
+
+.buttonStyle {
+    margin: 19%;
+}
+
+html{
+    height: 100%
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    background-image: linear-gradient(to right, #a8c0ff, #3f2b96);
+    background-repeat: no-repeat;
+}
