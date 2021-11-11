@@ -15,36 +15,57 @@ function createTableData(){
         tableRow: document.createElement("tr"),
         symbolTd: document.createElement("td"),
         shortNameTd: document.createElement("td"),
+        sectorTd: document.createElement("td"),
         stockValueTd: document.createElement("td"),
+        profitMarginsTd: document.createElement("td"),
         lastQuarterEarningsTd: document.createElement("td"),
         deleteButtonTd: document.createElement("button")
     }
 }
 
 function editTableData(tableRowObj, dataObj){
-    const {symbolTd, shortNameTd, stockValueTd, lastQuarterEarningsTd, deleteButtonTd, } = tableRowObj
+    const {symbolTd, shortNameTd, sectorTd, stockValueTd, profitMarginsTd, lastQuarterEarningsTd, deleteButtonTd} = tableRowObj
 
+    // # official company's symbol
     const {symbol} = dataObj
     symbolTd.innerHTML = symbol
 
+    // # official short-name
     const {shortName} = dataObj.price
     shortNameTd.innerHTML = shortName
 
-    const {fmt} = dataObj.financialData.currentPrice
-    stockValueTd.innerHTML = fmt
+    // # company's sector
+    const {sector} = dataObj.summaryProfile
+    sectorTd.innerHTML = sector
 
+    // # formatted current stock value
+    const {currentPrice} = dataObj.financialData
+    stockValueTd.innerHTML = "$" + currentPrice.fmt
+
+    // # company's current profit margin
+    const {profitMargins} = dataObj.defaultKeyStatistics
+    profitMarginsTd.innerHTML = profitMargins.fmt
+
+    // # long-formatted last quarter's earnings
     const quarterlyData = dataObj.earnings.financialsChart.quarterly
-    const {longFmt} = quarterlyData[quarterlyData.length - 1].earnings
-    lastQuarterEarningsTd.innerHTML = longFmt
+    let {longFmt} = quarterlyData[quarterlyData.length - 1].earnings
+    let numPrefix = "$"
+    if (longFmt[0] == "-"){
+        longFmt = longFmt.slice(1)
+        numPrefix = "-$"
+    }
+    lastQuarterEarningsTd.innerHTML = numPrefix + longFmt
     
-    deleteButtonTd.classList.add('btn', 'btn-danger', 'buttonStyle')
+    // # delete button 
+    deleteButtonTd.classList.add('btn', 'btn-danger', 'buttonStyle', 'deleteBtn')
+    deleteButtonTd.style.color = "black"
     deleteButtonTd.innerHTML = "x"
 }
 
 function appendTableData(tableRowObj){
-    const {tableRow, symbolTd, shortNameTd, stockValueTd, lastQuarterEarningsTd, deleteButtonTd} = tableRowObj
+    const {tableRow, symbolTd, shortNameTd, sectorTd, stockValueTd, profitMarginsTd, lastQuarterEarningsTd, deleteButtonTd} = tableRowObj
     const tableBody = document.getElementById("tableBody")
-    tableRow.append(symbolTd, shortNameTd, stockValueTd, lastQuarterEarningsTd, deleteButtonTd)
+    tableRow.append(symbolTd, shortNameTd, sectorTd, stockValueTd, profitMarginsTd, lastQuarterEarningsTd, deleteButtonTd)
     tableBody.append(tableRow)
 }
 
@@ -62,10 +83,14 @@ async function draw(companySymbol){
 }
 
 function init(){
-    const staticInitSymbolsList = ["ARBE"]//, "FB", "GOOGL", "NDAQ"] // Arbe, Facebook, Google, S&P 500
+    const staticInitSymbolsList = ["ARBE", "FB", "GOOGL", "NDAQ"] // Arbe, Facebook, Google, S&P 500 - as initial values required
     for(let i = 0; i < staticInitSymbolsList.length; i++){
         draw(staticInitSymbolsList[i])
     }
 }
+
+$("#myTable").on('click', '.deleteBtn', function(){
+    $(this).parent().remove();
+})
 
 init()

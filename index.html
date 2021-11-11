@@ -6,8 +6,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div>
-        <input id="addField" type="text"/>
+    <div id=addDiv>
+        <input id="addField" placeholder="Enter company symbol" type="text"/>
         <button type="button" id="addBtn" class="btn btn-primary" onclick="draw()"> Add </button>
     </div>
     <div>
@@ -20,12 +20,18 @@
                     Short Name
                 </th>
                 <th>
+                    Sector
+                </th>
+                <th>
                     Stock Value
+                </th>
+                <th>
+                    Profit Margin
                 </th>
                 <th>
                     Last Quarter Earnings
                 </th>
-                <th>
+                <th style="color:grey">
                     Delete
                 </th>
             </thead>
