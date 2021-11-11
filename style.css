@@ -30,7 +30,7 @@ html{
 
 body {
     margin: 0;
-    background-image: linear-gradient(to right, #a8c0ff, #3f2b96);
+    background-image: linear-gradient(to bottom, #e1eec3, #6dd5fa);
     background-repeat: no-repeat;
     font-family: monospace;
 }
