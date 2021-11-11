@@ -58,7 +58,6 @@ function editTableData(tableRowObj, dataObj){
     
     // # delete button 
     deleteButtonTd.classList.add('btn', 'btn-danger', 'buttonStyle', 'deleteBtn')
-    deleteButtonTd
     deleteButtonTd.style.color = "black"
     deleteButtonTd.innerHTML = "x"
 }
