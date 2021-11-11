@@ -1,0 +1,42 @@
+table{
+    border: 1px solid black;
+}
+
+th {
+    border: 1px solid black;
+    text-align: center;
+    padding: 10px;
+}
+
+td {
+    text-align: center;
+    border: 1px solid black;
+    padding: 10px
+}
+
+.buttonStyle {
+    margin: 27%;
+    border: 2px solid black;
+}
+
+#addDiv {
+    margin-top: 10%;
+    margin-bottom: 2%;
+}
+
+html{
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    background-image: linear-gradient(to right, #a8c0ff, #3f2b96);
+    background-repeat: no-repeat;
+    font-family: monospace;
+}
+
+input {
+    margin-left: 41%;
+}
+
+table > tr > td:first-child { padding-left: 10px} 
